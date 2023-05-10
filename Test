@@ -1,0 +1,47 @@
+package bai2;
+
+import java.util.Scanner;
+
+public class Test {
+	public static void main(String[] args) {
+		int chon=7;
+		DanhSachCD list=new DanhSachCD();
+		Scanner sc=new Scanner(System.in);
+		CD cd;
+		
+		do {
+			System.out.println("----- MENU -----");
+            System.out.println("1. Them CD");
+            System.out.println("2. So luong CD trong he thong");
+            System.out.println("3. Tong gia thanh CD");
+            System.out.println("4. Sap xep danh sach tang giam theo gia thanh");
+            System.out.println("5. Sap xep danh sach tang dan theo tua CD");
+            System.out.println("6. Thong tin toan bo CD trong he thong");
+            System.out.println("7. Thoat chuong trinh");
+            System.out.println("-----------------------------------------");
+            System.out.print("Chon chuc nang: ");
+            chon=sc.nextInt();
+            sc.nextLine();
+            
+            if(chon==1) {
+            	cd= new CD();
+            	cd.nhap();
+            	list.them(cd);
+            }else if(chon==2) {
+            	System.out.println("số lượng : "+list.soLuong());
+            }else if(chon==3) {
+            	list.tongGiaThanh();
+            }else if(chon==4) {
+            	list.sapXepGiamTheoGia();
+            }else if(chon==5) {
+            	list.sapXepTangTheoTuaCD();
+            }else if(chon==6) {
+            	list.xuat();
+            }else if(chon==7) {
+            	System.out.println("bạn đã thoát");
+            }else {
+            	System.out.println("chọn đubgn1 menu");
+            }
+		}while(chon!=7);
+	}
+}
