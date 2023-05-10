@@ -1,0 +1,74 @@
+package bai2;
+
+
+public class DanhSachCD {
+	private CD[] list;
+	private int count;
+
+	public DanhSachCD(CD[] list) {
+		this.list = list;
+	}
+
+	public DanhSachCD() {
+		this.list=new CD[10];
+		count=0;
+	}	
+	
+	public void them(CD cd) {
+		if(count < list.length) {
+			for(int i=0;i<count;i++) {
+				if(this.list[i].getMaCD()== cd.getMaCD()) {
+					System.out.println("đã trùng mã !");
+					return;
+				}
+			}
+			this.list[count]=cd;
+			count++;
+		}else {
+			System.out.println("đã quá kích cỡ");
+		}
+	}
+	
+	public int soLuong() {
+		return count;
+	}
+	
+	public void tongGiaThanh() {
+		double tong=0;
+		for(int i=0;i<count;i++) {
+			tong+=this.list[i].getGiaThanh();
+		}
+		System.out.println("tổng giá thành = "+tong);
+	}
+	
+	public void sapXepGiamTheoGia() {
+		for(int i=0;i<count-1;i++) {
+			for(int j=i+1;j<count;j++) {
+				if(this.list[i].getGiaThanh()<this.list[j].getGiaThanh()) {
+					CD temp=this.list[i];
+					this.list[i]=this.list[j];
+					this.list[j]=temp;
+				}
+			}
+		}
+	}
+	
+	public void sapXepTangTheoTuaCD(){
+		for(int i=0;i<count-1;i++) {
+			for(int j=i+1;j<count;j++) {
+				if(this.list[i].getTuaCD().compareToIgnoreCase(this.list[j].getTuaCD())<0) {
+					CD temp=this.list[i];
+					this.list[i]=this.list[j];
+					this.list[j]=temp;
+				}
+			}
+		}
+	}
+	
+	public void xuat() {
+		for (int i = 0; i < count; i++) {
+			System.out.println(this.list[i].toString());
+		}
+	}
+	
+}
