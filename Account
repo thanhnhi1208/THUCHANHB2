@@ -1,0 +1,119 @@
+package bai1;
+
+import java.text.NumberFormat;
+import java.util.Locale;
+import java.util.Scanner;
+
+public class Account {
+	private double soTien;
+	private int soTK;
+	private String tenTK;
+	private String trangThai;
+	private final double laiXuat = 0.035;
+
+	public Account() {
+		this.soTien = 50;
+		this.soTK = 999999;
+		this.tenTK = "chưa xác định";
+	}
+
+	public Account(double soTien, int soTK, String tenTK, String trangThai) {
+		this.soTien = soTien;
+		this.soTK = soTK;
+		this.tenTK = tenTK;
+		this.trangThai = trangThai;
+	}
+
+	public double getSoTien() {
+		return soTien;
+	}
+
+	public void setSoTien(double soTien) {
+		if (this.soTien <= 50) {
+			this.trangThai = "số tiền phải >=50";
+		} else {
+			this.soTien = soTien;
+		}
+	}
+
+	public int getSoTK() {
+		return soTK;
+	}
+
+	public void setSoTK(int soTK) {
+		if (this.soTK < 0 && this.soTK != 999999) {
+			this.trangThai = "số tài khoản không hợp lệ";
+		} else {
+			this.soTK = soTK;
+		}
+	}
+
+	public String getTenTK() {
+		return tenTK;
+	}
+
+	public void setTenTK(String tenTK) {
+		if (this.tenTK.equals("")) {
+			this.tenTK = "không được rỗng";
+		} else {
+			this.tenTK = tenTK;
+		}
+	}
+
+	public String getTrangThai() {
+		return trangThai;
+	}
+
+	public void setTrangThai(String trangThai) {
+		this.trangThai = trangThai;
+	}
+
+	@Override
+	public String toString() {
+		Locale lc = new Locale("vi", "VN");
+		NumberFormat nf = NumberFormat.getCurrencyInstance(lc);
+		String soTien = nf.format(this.soTien);
+
+		return "Account [soTien=" + soTien + ", soTK=" + soTK + ", tenTK=" + tenTK + ", trangThai=" + trangThai + "]";
+	}
+
+	public void napTien(double soTien) {
+		if (this.soTien <= 0) {
+			System.out.println("nạp số tiền trên 50.000VND");
+		} else {
+			this.soTien += soTien;
+		}
+	}
+
+	public void rutTien(double soTien) {
+		if (this.soTien > 0 && this.soTien < 50) {
+			System.out.println("số tài khoản không đủ");
+		} else {
+			this.soTien -= soTien;
+		}
+	}
+
+	public void chuyenTien(double soTien) {
+		if (this.soTien > 0 && this.soTien < 50) {
+			System.out.println("số tài khoản không đủ");
+		} else {
+			this.soTien -= soTien;
+		}
+	}
+
+	public void daoHan() {
+		this.soTien = this.soTien + this.soTien *this.laiXuat;
+
+	}
+	
+	public void nhap() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Nhập số tài khoản");
+		this.setSoTK(sc.nextInt());
+		sc.nextLine();
+		System.out.println("Nhập tên tài khoản");
+		this.setTenTK(sc.nextLine());
+		System.out.println("nhập số tiền muốn nạp");
+		this.setSoTien(sc.nextDouble());
+	}
+}
