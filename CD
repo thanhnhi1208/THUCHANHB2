@@ -1,0 +1,86 @@
+package bai2;
+
+import java.util.Scanner;
+
+public class CD {
+	private int maCD;
+	private String tuaCD;
+	private int soBaiHat;
+	private double giaThanh;
+	
+	public CD(int maCD, String tuaCD, int soBaiHat, double giaThanh) {
+		this.maCD = maCD;
+		this.tuaCD = tuaCD;
+		this.soBaiHat = soBaiHat;
+		this.giaThanh = giaThanh;
+	}
+	
+	public CD() {
+		this.maCD=999999;
+		this.tuaCD="chưa xác định";
+	}
+	
+	@Override
+	public String toString() {
+		return "CD [maCD=" + maCD + ", tuaCD=" + tuaCD + ", soBaiHat=" + soBaiHat + ", giaThanh=" + giaThanh + "]";
+	}
+	
+	public int getMaCD() {
+		return maCD;
+	}
+
+	public void setMaCD(int maCD) {
+		if(maCD <=0) {
+			System.out.println("Không hợp lệ");
+		}else {
+			this.maCD = maCD;
+		}
+	}
+
+	public String getTuaCD() {
+		return tuaCD;
+	}
+
+	public void setTuaCD(String tuaCD) {
+		if(tuaCD.equals("")) {
+			System.out.println("không hợp lệ");
+		}else {
+			this.tuaCD = tuaCD;
+		}
+	}
+
+	public int getSoBaiHat() {
+		return soBaiHat;
+	}
+
+	public void setSoBaiHat(int soBaiHat) {
+		this.soBaiHat = soBaiHat;
+	}
+
+	public double getGiaThanh() {
+		return giaThanh;
+	}
+
+	public void setGiaThanh(double giaThanh) {
+		this.giaThanh = giaThanh;
+	}
+	public void nhap() {
+		Scanner sc=new Scanner(System.in);
+		System.out.println("Nhập mã cd");
+		this.setMaCD(sc.nextInt());
+		sc.nextLine();
+		System.out.println("Nhập tựa cd");
+		this.setTuaCD(sc.nextLine());
+		
+		do {
+			System.out.println("nhập số bài hát > 0");
+			this.setSoBaiHat(sc.nextInt());
+		}while(this.getSoBaiHat()<=0);
+		
+		do {
+			System.out.println("nhập số giá thành > 0");
+			this.setGiaThanh(sc.nextDouble());
+		}while(this.getGiaThanh()<=0);
+	} 
+	
+}
