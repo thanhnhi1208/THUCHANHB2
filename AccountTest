@@ -1,0 +1,75 @@
+package bai1;
+
+import java.util.Scanner;
+
+public class AccountTest {
+	public static void main(String[] args) {
+		AccountList list = new AccountList();
+		Scanner sc = new Scanner(System.in);
+
+		int chon = 7;
+		do {
+			System.out.println("----- MENU -----");
+			System.out.println("1. Them tai khoan vao he thong");
+			System.out.println("2. So luong tai khoan hien co");
+			System.out.println("3. In thong tin tai khoan");
+			System.out.println("4. Nap tien");
+			System.out.println("5. Rut tien");
+			System.out.println("6. Chuyen tien");
+			System.out.println("7. Thoat chuong trinh");
+			System.out.println("------------------------------------");
+			System.out.print("Chon chuc nang: ");
+			chon = sc.nextInt();
+			sc.nextLine();
+
+			if (chon == 1) {
+				Account a = new Account();
+				a.nhap();
+				System.out.println("Thêm tài khoản : " + list.themTK(a));
+			} else if (chon == 2) {
+				System.out.println("Số lượng tài khoản hiện có : " + list.tinhSoLuongTaiKhoan());
+			} else if (chon == 3) {
+				list.xuat();
+			} else if (chon == 4) {
+				System.out.println("Nhập số tài khoản muốn nạp");
+				int sotk = sc.nextInt();
+				System.out.println("Nhập số tiền muốn nạp");
+				double soTien = sc.nextDouble();
+				if (list.timTK(sotk) == null) {
+					System.out.println("không tìm thấy số tài khoản");
+				} else {
+					list.timTK(sotk).napTien(soTien);
+
+				}
+			} else if (chon == 5) {
+				System.out.println("Nhập số tài khoản muốn rút");
+				int sotk = sc.nextInt();
+				System.out.println("Nhập số tiền muốn rút");
+				double soTien = sc.nextDouble();
+				if (list.timTK(sotk) == null) {
+					System.out.println("không tìm thấy !");
+				} else {
+					list.timTK(sotk).rutTien(soTien);
+				}
+			} else if (chon == 6) {
+				System.out.println("Nhập số tài khoản mà bạn muốn chuyển");
+				int sotkChuyen = sc.nextInt();
+				System.out.println("Nhập số tài khoản mà bạn muốn chuyển");
+				int sotkNhan = sc.nextInt();
+				System.out.println("Nhập số tiền muốn chuyển ");
+				double soTien = sc.nextDouble();
+				if (list.timTK(sotkChuyen) == null || list.timTK(sotkNhan) == null) {
+					System.out.println("không tìm thấy stk");
+				} else {
+					list.timTK(sotkChuyen).rutTien(soTien);
+					list.timTK(sotkNhan).napTien(soTien);
+				}
+			} else if (chon == 7) {
+				System.out.println("Bạn đã thoát");
+			} else {
+				System.out.println("Hãy chọn đúng menu");
+			}
+		} while (chon != 7);
+
+	}
+}
